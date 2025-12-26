@@ -10,6 +10,8 @@ Nginx (reverse proxy + static files)
 
 Docker & Docker Compose
 
+CI/CD using GitHub Actions
+
 # The same setup works locally and can be deployed to AWS EC2 or any Linux server.
 
 # 📁 Project Structure
@@ -36,6 +38,12 @@ project-root/
 
 │   └── asgi.py
 
+├── .github/
+
+    └── workflows/
+
+      └── deploy.yml
+
 ├── manage.py
 
 ├── requirements.txt
@@ -56,6 +64,8 @@ project-root/
 * Nginx
  
 * Docker & Docker Compose
+
+* GitHub Actions (CI/CD)
 
 
 # 🔐 Environment Variables
@@ -150,6 +160,80 @@ docker compose logs web
 docker compose logs nginx
 
 docker compose logs db
+
+
+# 🔄 CI/CD Pipeline (GitHub Actions)
+
+This project uses GitHub Actions to automatically deploy changes to an EC2 server whenever code is pushed to the main branch.
+
+# 📌 CI/CD Flow
+Local Commit
+
+   ↓ git push
+
+GitHub Actions
+
+   ↓ SSH
+
+AWS EC2 Server
+
+   ↓
+
+docker compose up -d --build
+
+# 🔐 Required GitHub Secrets
+
+Add the following secrets in your repository:
+
+GitHub → Settings → Secrets → Actions
+
+# Secret Name	Value
+
+EC2_HOST	EC2 Public IP or Elastic IP
+
+EC2_USER	ubuntu
+
+EC2_SSH_KEY	Private SSH key (id_ed25519)
+
+# ⚠️ Paste the entire private key, including:
+
+-----BEGIN OPENSSH PRIVATE KEY-----
+
+📄 GitHub Actions Workflow
+
+Create the file:
+
+.github/workflows/deploy.yml
+
+
+
+# ✅ Result
+
+git push
+
+→ GitHub Actions
+
+→ SSH to EC2
+
+→ Docker rebuild & restart
+
+→ Application updated 🚀
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
