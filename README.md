@@ -15,18 +15,31 @@ Docker & Docker Compose
 # 📁 Project Structure
 
 project-root/
+
 ├── docker/
+
 │   ├── docker-compose.yml
+
 │   ├── Dockerfile
+
 │   ├── nginx.conf
+
 │   └── .env
+
 ├── my_app/
+
 │   ├── settings.py
+
 │   ├── urls.py
+
 │   ├── wsgi.py
+
 │   └── asgi.py
+
 ├── manage.py
+
 ├── requirements.txt
+
 └── README.md
 
 
@@ -49,27 +62,45 @@ project-root/
 
 # Create a .env file inside the docker/ folder:
 
-DJANGO_SECRET_KEY=your-secret-key
+DJANGO_SECRET_KEY=your-secret-
+
 DJANGO_DEBUG=0
 
 DB_NAME=django_db
+
 DB_USER=django_user
+
 DB_PASSWORD=django_pass
+
 DB_HOST=db
+
 DB_PORT=3306
 
 
 # 🚀 How to Run the Project
 
+# install docker compose
+sudo mkdir -p /usr/local/lib/docker/cli-plugins
+
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-linux-x86_64 \
+  -o /usr/local/lib/docker/cli-plugins/docker-compose
+
+sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+
+# check version
+docker compose version
+
 # 1️⃣ Clone the repository
 
 git clone <repo-url>
+
 cd project-root/docker
 
 
 # 2️⃣ Build and start containers
 
 docker compose build
+
 docker compose up -d
 
 # 3️⃣ Run database migrations
@@ -83,6 +114,7 @@ docker compose exec web python manage.py createsuperuser
 # 5️⃣ Collect static files (IMPORTANT)
 
 docker compose exec web python manage.py collectstatic
+
 Type yes when prompted.
 
 
@@ -106,6 +138,7 @@ Gunicorn runs internally on port 8000
 
 # 🛑 Common Commands
 # Stop containers
+
 docker compose down
 
 # Stop & remove volumes (reset DB)
@@ -113,11 +146,14 @@ docker compose down -v
 
 # View logs
 docker compose logs web
+
 docker compose logs nginx
+
 docker compose logs db
 
 
 
 # 👨‍💻 Author
 Tanmay Kulkarni
+
 Full Stack Developer | Django | Docker | AWS
