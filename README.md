@@ -164,3 +164,5 @@ Full Stack Developer | Django | Docker | AWS
 ![terminal code](image.png)
 ![login page](image-2.png)
 ![admin dashboard](image-1.png)
+
+<img width="1919" height="1137" alt="image" src="https://github.com/user-attachments/assets/4ddf7220-af9c-4e7a-807b-9cc7689bdbf8" />
