@@ -22,5 +22,5 @@ jobs:
           script: |
             cd /root/docker-django-test/docker
             git pull origin main
-            docker compose down
-            docker compose up -d --build
+            docker-compose down
+            docker-compose up -d --build
